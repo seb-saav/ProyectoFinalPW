@@ -669,6 +669,7 @@ app.post("/api/pagos/completar-simulado", async (req: Request, res: Response) =>
 
     } else {
       // CASO B: COMPRA DE MONEDAS NORMAL
+      console.log(`💰 Procesando compra de monedas. Actual: ${user.monedas}, Sumar: ${transaccion.amount}`);
       const nuevasMonedas = user.monedas + transaccion.amount
       const nuevosPuntos = user.puntos + transaccion.points
 
@@ -684,6 +685,7 @@ app.post("/api/pagos/completar-simulado", async (req: Request, res: Response) =>
           data: { status: "COMPLETED" }
         })
       ])
+      console.log(`✅ Saldo actualizado. Nuevo: ${nuevasMonedas}`);
     }
 
     // 4. RECUPERAR EL USUARIO FINAL ACTUALIZADO PARA DEVOLVERLO
