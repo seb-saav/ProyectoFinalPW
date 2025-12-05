@@ -24,19 +24,20 @@ import CheckEmail from "./CheckEmail"
 
 const CambiarPantallas = () => {
   const navigate = useNavigate()
-  const location = useLocation()
+  // const location = useLocation() // Ya no lo usamos para esto
 
   // ---------------------------------------------------------
-  // DETECTOR DE RETORNO DE PAYU (Fix para GitHub Pages)
+  // DETECTOR DE RETORNO DE PAYU (Fix para GitHub Pages + HashRouter)
   // ---------------------------------------------------------
   useEffect(() => {
-    // PayU devuelve params como: ?merchantId=...&transactionState=4&...
-    const params = new URLSearchParams(location.search)
-    const merchantId = params.get("merchantId")
-    const transactionState = params.get("transactionState") // 4 = Aprobada
+    // PayU devuelve params en la raíz: https://web.com/?merchantId=...#/
+    // HashRouter ignora lo que está antes del #, así que usamos window.location.search
+    const searchParams = new URLSearchParams(window.location.search)
+    const merchantId = searchParams.get("merchantId")
+    const transactionState = searchParams.get("transactionState") // 4 = Aprobada
 
     if (merchantId && transactionState) {
-      console.log("💳 Detectado retorno de PayU. Redirigiendo...")
+      console.log("💳 Detectado retorno de PayU (Root Params). Redirigiendo...")
       
       if (transactionState === "4") {
         navigate("/recarga-exitosa")
@@ -44,7 +45,7 @@ const CambiarPantallas = () => {
         navigate("/recarga-fallida")
       }
     }
-  }, [location, navigate])
+  }, [navigate])
 
   return (
     <Routes>
