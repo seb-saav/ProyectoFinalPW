@@ -161,7 +161,9 @@ const PerfilPage = () => {
             setUserState(updatedUser)
             localStorage.setItem("currentUser", JSON.stringify(updatedUser))
             toast.success(`¡Ahora eres ${newRole === 'streamer' ? 'Streamer' : 'Espectador'}!`)
-            setTimeout(() => window.location.reload(), 1000)
+
+            // Actualizar Layout sin recargar página (evita 404 en GitHub Pages)
+            window.dispatchEvent(new Event("balanceUpdated"));
 
         } catch (error: any) {
             console.error("Error UI cambio rol:", error);
