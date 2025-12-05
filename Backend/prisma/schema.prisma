@@ -79,7 +79,7 @@ model Transaction {
 
   // Si se borra el usuario, se borra su historial
   user           User  @relation("UserTransactions", fields: [userId], references: [id], onDelete: Cascade)
-  targetStreamer User? @relation("StreamerTransactions", fields: [targetStreamerId], references: [id])
+  targetStreamer User? @relation("StreamerTransactions", fields: [targetStreamerId], references: [id], onDelete: SetNull)
 }
 
 model Subscription {
@@ -108,7 +108,7 @@ model Message {
 
   // Relación: Quién lo escribió
   userId String
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   // Sala de chat (Stream ID)
   streamId String?
