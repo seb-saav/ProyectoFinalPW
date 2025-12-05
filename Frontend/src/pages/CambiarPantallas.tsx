@@ -1,5 +1,6 @@
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom"
 import Layout from "../components/Layout"
+import { useEffect } from "react"
 
 // Páginas Principales
 import PantallaGeneral from "./PantallaGeneral"
@@ -22,6 +23,29 @@ import VerificarCuenta from "./VerificarCuenta"
 import CheckEmail from "./CheckEmail"
 
 const CambiarPantallas = () => {
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  // ---------------------------------------------------------
+  // DETECTOR DE RETORNO DE PAYU (Fix para GitHub Pages)
+  // ---------------------------------------------------------
+  useEffect(() => {
+    // PayU devuelve params como: ?merchantId=...&transactionState=4&...
+    const params = new URLSearchParams(location.search)
+    const merchantId = params.get("merchantId")
+    const transactionState = params.get("transactionState") // 4 = Aprobada
+
+    if (merchantId && transactionState) {
+      console.log("💳 Detectado retorno de PayU. Redirigiendo...")
+      
+      if (transactionState === "4") {
+        navigate("/recarga-exitosa")
+      } else {
+        navigate("/recarga-fallida")
+      }
+    }
+  }, [location, navigate])
+
   return (
     <Routes>
       {/* Rutas Públicas */}
