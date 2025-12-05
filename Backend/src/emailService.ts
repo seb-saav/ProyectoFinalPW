@@ -1,17 +1,24 @@
 import nodemailer from 'nodemailer';
 
+// Configuración del transporter (Global para reutilizar conexión)
+// Asegúrate de tener EMAIL_USER y EMAIL_PASS en tu archivo .env
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
+
+// Verificar conexión al iniciar el servidor
+transporter.verify().then(() => {
+  console.log('✅ Nodemailer: Listo para enviar correos');
+}).catch((error) => {
+  console.error('❌ Nodemailer Error de Conexión:', error);
+});
+
 export const enviarCorreoBienvenida = async (email: string, name: string, token: string) => {
   try {
-    // Configuración del transporter
-    // Asegúrate de tener EMAIL_USER y EMAIL_PASS en tu archivo .env
-    const transporter = nodemailer.createTransport({
-      service: 'gmail', // Puedes cambiar esto según tu proveedor
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
-
     const frontendUrl = process.env.FRONTEND_URL || "http://localhost:5173";
     const urlVerificacion = `${frontendUrl}/verificar-cuenta?token=${token}`;
 
