@@ -8,6 +8,6 @@ export const PAYU_CONFIG = {
   test: true, 
   paymentUrl: 'https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/',
   // Configuración dinámica para Local vs GitHub Pages
-  responseUrl: `${BASE_URL}/recarga-exitosa`, 
-  confirmationUrl: `${BASE_URL}/recarga-exitosa`,
+  responseUrl: `${BASE_URL}/#/recarga-exitosa`, 
+  confirmationUrl: `${BASE_URL}/#/recarga-exitosa`,
 };
