@@ -39,6 +39,11 @@ const CambiarPantallas = () => {
     if (merchantId && transactionState) {
       console.log("💳 Detectado retorno de PayU (Root Params). Redirigiendo...")
       
+      // Limpiamos la URL para que no se vea fea Y para evitar bucles infinitos
+      // Mantenemos el Hash actual si existe, o dejamos solo el pathname
+      const newUrl = window.location.pathname + window.location.hash;
+      window.history.replaceState({}, document.title, newUrl);
+
       if (transactionState === "4") {
         navigate("/recarga-exitosa")
       } else {
