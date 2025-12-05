@@ -55,6 +55,7 @@ const RecargaExitosa = () => {
           }
 
           if (data.user) {
+            console.log("👤 Usuario recibido del backend. Monedas:", data.user.monedas);
             setUser(data.user) // Use centralized storage
           } else {
             console.warn("⚠️ Backend no devolvió usuario actualizado, manteniendo sesión actual")
@@ -94,7 +95,7 @@ const RecargaExitosa = () => {
         {/* ESTADO: ÉXITO (Monedas) */}
         {status === 'success' && successType !== 'SUBSCRIPTION' && (
           <div className="icon-success-wrapper">
-            <span className="icon-success-emoji">💎</span>
+            <span className="icon-success-emoji">��</span>
           </div>
         )}
 
