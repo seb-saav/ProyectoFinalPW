@@ -1,0 +1,126 @@
+/* Frontend/src/estilos/PanelStreamer.css */
+
+.panel-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  animation: fadeIn 0.5s ease-in-out;
+  color: white;
+}
+
+.panel-header {
+  margin-bottom: 40px;
+  border-bottom: 1px solid #333;
+  padding-bottom: 20px;
+}
+
+.panel-header h1 {
+  font-size: 2.5rem;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.panel-header p { color: #aaa; font-size: 1.1rem; }
+
+/* --- SECCIÓN DE CREAR REGALO --- */
+.create-gift-section {
+  background-color: #2a2a2a;
+  padding: 30px;
+  border-radius: 16px;
+  margin-bottom: 40px;
+  border: 1px solid #444;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.create-title { color: #ff6f00; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+
+.create-form {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.input-emoji {
+  width: 80px; padding: 12px; border-radius: 8px; border: 1px solid #555;
+  background: #111; color: white; font-size: 1.5rem; text-align: center;
+}
+
+.input-name {
+  flex: 1; padding: 12px; border-radius: 8px; border: 1px solid #555;
+  background: #111; color: white; font-size: 1rem; min-width: 200px;
+}
+
+.input-cost {
+  width: 120px; padding: 12px; border-radius: 8px; border: 1px solid #555;
+  background: #111; color: white; font-size: 1rem;
+}
+
+/* --- SECCIÓN MENSAJE DESPEDIDA --- */
+.goodbye-section {
+  background-color: #2a2a2a;
+  padding: 30px;
+  border-radius: 16px;
+  margin-bottom: 40px;
+  margin-top: 40px;
+  border: 1px solid #444;
+}
+
+/* --- GRID DE REGALOS --- */
+.gifts-manager-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+.gift-toggle-card {
+  background-color: #2a2a2a;
+  border: 2px solid #333;
+  border-radius: 16px;
+  padding: 25px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  opacity: 0.6;
+  filter: grayscale(80%);
+}
+
+.gift-toggle-card:hover { transform: translateY(-5px); border-color: #555; }
+
+.gift-toggle-card.active {
+  border-color: #ff6f00;
+  background: linear-gradient(145deg, #332015, #2a2a2a);
+  opacity: 1;
+  filter: grayscale(0%);
+  box-shadow: 0 8px 20px rgba(255, 111, 0, 0.15);
+}
+
+.gift-emoji { font-size: 3.5rem; display: block; margin-bottom: 15px; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+.gift-name { font-weight: 700; color: #fff; display: block; font-size: 1.1rem; margin-bottom: 5px; }
+.gift-cost { color: #ffc107; font-weight: 600; font-size: 0.95rem; }
+
+.status-badge {
+  position: absolute; top: 15px; right: 15px; width: 14px; height: 14px;
+  border-radius: 50%; background-color: #444; transition: all 0.3s ease;
+}
+.gift-toggle-card.active .status-badge { background-color: #00ff00; box-shadow: 0 0 10px #00ff00; }
+
+.custom-label {
+  position: absolute; top: -10px; left: 10px;
+  background: #9146ff; color: white;
+  font-size: 0.7rem; padding: 2px 8px;
+  border-radius: 4px; font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.gift-status-text { margin-top: 15px; font-size: 0.8rem; font-weight: bold; }
+
+.btn-ulima {
+  background-color: #ff6f00; color: white; border: none;
+  border-radius: 8px; padding: 12px 30px; font-size: 1rem; font-weight: 600;
+  cursor: pointer; transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.btn-ulima:hover { background-color: #ff8f1a; transform: translateY(-2px); }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }

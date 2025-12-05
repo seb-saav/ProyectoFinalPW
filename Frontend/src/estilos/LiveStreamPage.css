@@ -1,0 +1,159 @@
+/* Frontend/src/estilos/LiveStreamPage.css */
+
+.stream-layout {
+  display: flex;
+  width: 100%;
+  /* Ajustamos la altura para que quepa exacto sin scroll doble */
+  height: 100%; 
+  min-height: 0; /* Importante para Flexbox anidado */
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.video-column {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  min-width: 0;
+  height: 100%;
+}
+
+.gif-player {
+  background-color: #000;
+  border-radius: 12px;
+  flex-grow: 1; 
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gif-player img { width: 100%; height: 100%; object-fit: cover; }
+
+.live-indicator {
+  position: absolute; top: 20px; left: 20px; background-color: #e91916; padding: 5px 12px;
+  border-radius: 6px; font-size: 0.9rem; font-weight: bold; color: white; text-transform: uppercase;
+}
+
+/* --- INFO DEL STREAM --- */
+.stream-info-card {
+  background-color: #1c1c1c;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100px;
+}
+
+.stream-text h3 { margin: 0 0 5px 0; color: white; font-size: 1.5rem; }
+.stream-text p { margin: 0; color: #aaa; }
+
+/* Botones de Acción */
+.btn-action-subscribe {
+  background-color: #9146ff;
+  color: white; border: none; border-radius: 25px; padding: 10px 20px;
+  font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px;
+  transition: background 0.2s;
+}
+.btn-action-subscribe:hover { background-color: #772ce8; }
+
+.btn-action-subscribed {
+  background-color: #333; border: 1px solid #666; color: #ccc;
+  border-radius: 25px; padding: 10px 20px; cursor: default;
+}
+
+.btn-action-stop {
+  background-color: #dc3545; color: white; border: none; border-radius: 25px;
+  padding: 10px 20px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px;
+}
+.btn-action-stop:hover { background-color: #bb2d3b; }
+
+
+/* --- CHAT --- */
+.chat-column {
+  flex: 1;
+  background-color: #1c1c1c;
+  border-radius: 12px;
+  border: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+  min-width: 320px;
+  height: 100%;
+}
+
+.balance-header {
+  background-color: #252525; padding: 15px; border-radius: 12px 12px 0 0; border-bottom: 1px solid #333;
+  display: flex; justify-content: space-between; font-size: 0.9rem; color: #ddd;
+}
+
+.chat-log {
+  flex-grow: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chat-message { font-size: 0.9rem; line-height: 1.4; word-wrap: break-word; }
+.message-text { color: #e0e0e0; margin-left: 5px; }
+.user-name { font-weight: bold; margin-right: 5px; }
+.user-lime { color: #ffc107; }
+.user-pro { color: #9146ff; }
+
+.chat-level-badge { background: #333; color: #aaa; font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; margin-right: 6px; border: 1px solid #444; }
+.gift-alert-chat { background: rgba(255, 111, 0, 0.15); padding: 8px; border-radius: 6px; border-left: 3px solid #ff6f00; }
+
+.chat-input-area {
+  padding: 15px; border-top: 1px solid #333; background-color: #252525; border-radius: 0 0 12px 12px;
+  display: flex; gap: 10px; position: relative;
+}
+.chat-input-area input {
+  flex: 1; background: #333; border: 1px solid #444; color: white; padding: 10px; border-radius: 8px; outline: none;
+}
+.chat-input-area input:focus { border-color: #ff6f00; }
+
+.gift-button, .send-button {
+  width: 40px; height: 40px; border-radius: 8px; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; color: white;
+}
+.gift-button { background: #ff6f00; }
+.send-button { background: #007bff; }
+.send-button:disabled { background: #444; cursor: not-allowed; }
+
+/* Popup de regalos */
+.gift-menu-popup {
+  position: absolute; bottom: 75px; left: 10px; right: 10px; background: #1e1e1e; border: 1px solid #444;
+  border-radius: 12px; padding: 10px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+  box-shadow: 0 -5px 20px rgba(0,0,0,0.5); z-index: 50; max-height: 250px; overflow-y: auto;
+}
+.regalo-card { background: #2a2a2a; padding: 10px; border-radius: 8px; text-align: center; cursor: pointer; transition: 0.2s; border: 1px solid transparent; }
+.regalo-card:hover { border-color: #ff6f00; background: #333; }
+.custom-tag { font-size: 0.6rem; color: #9146ff; display: block; font-weight: bold; margin-top: 2px; }
+
+/* Overlay PayU (UNIFICADO) */
+.payu-overlay-container {
+  position: fixed; top:0; left:0; right:0; bottom:0; z-index:9999; 
+  background: rgba(0,0,0,0.9); backdrop-filter: blur(5px);
+  display: flex; justify-content: center; align-items: center;
+}
+.payu-modal-content { width: 100%; max-width: 500px; position: relative; }
+.btn-close-payu { margin-top: 15px; width: 100%; padding: 12px; background: transparent; border: 1px solid #666; color: #ccc; border-radius: 8px; cursor: pointer; }
+.btn-close-payu:hover { border-color: white; color: white; }
+
+/* Overlay Alerta Donación */
+.donation-overlay {
+  position: absolute; top: 20%; left: 50%; transform: translateX(-50%);
+  z-index: 1000; animation: slideDown 0.5s ease-out;
+}
+.donation-alert {
+  background: linear-gradient(45deg, #ff6f00, #ff9100); color: white; padding: 15px 30px;
+  border-radius: 30px; font-weight: bold; font-size: 1.2rem; box-shadow: 0 5px 20px rgba(255, 111, 0, 0.4);
+}
+
+@keyframes slideDown { from { opacity: 0; transform: translate(-50%, -20px); } to { opacity: 1; transform: translate(-50%, 0); } }

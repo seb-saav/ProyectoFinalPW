@@ -1,0 +1,115 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL") // Usa el puerto 6543 (Pooler)
+  directUrl = env("DIRECT_URL") // Usa el puerto 5432 (Direct)
+}
+
+model User {
+  id                String   @id @default(uuid())
+  email             String   @unique
+  name              String
+  password          String
+  role              String   @default("usuario")
+  monedas           Int      @default(100)
+  puntos            Int      @default(0)
+  isVerified        Boolean  @default(false)
+  verificationToken String?
+  xpThreshold       Int      @default(500)
+  createdAt         DateTime @default(now())
+  description       String?  @default("¡Hola! Soy nuevo en ULimeñitaPlay.")
+  goodbyeMessage    String?  @default("¡Gracias por haber sido parte de la comunidad!")
+
+  // --- NUEVOS CAMPOS PARA STREAMING ---
+  isLive         Boolean @default(false) // ¿Está prendido el stream?
+  streamTitle    String? // Título del directo (ej: "Rankeds Nocturnas")
+  streamCategory String? // Categoría (ej: "valorant", "just-chatting")
+
+  // Historial acumulado (en horas o minutos)
+  totalStreamHours Float @default(0.0)
+
+  // "Memoria" de seguridad: ¿A qué hora prendió el último stream?
+  lastStreamStart DateTime?
+  // ------------------------------------
+
+  transactions         Transaction[]  @relation("UserTransactions")
+  receivedTransactions Transaction[]  @relation("StreamerTransactions")
+  customGifts          StreamerGift[] @relation("StreamerGifts")
+  createdGifts         Gift[]         @relation("GiftOwner")
+  subscribers          Subscription[] @relation("StreamerSubs")
+  subscriptions        Subscription[] @relation("MySubs")
+  messages             Message[]
+}
+
+model Gift {
+  id      Int     @id @default(autoincrement())
+  name    String
+  costo   Int
+  emoji   String
+  ownerId String?
+
+  // Si se borra el dueño, se borra el regalo personalizado
+  owner     User?          @relation("GiftOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+  streamers StreamerGift[]
+}
+
+model StreamerGift {
+  id         String @id @default(uuid())
+  streamerId String
+  giftId     Int
+
+  // Si se borra el streamer o el regalo, se rompe la relación
+  streamer User @relation("StreamerGifts", fields: [streamerId], references: [id], onDelete: Cascade)
+  gift     Gift @relation(fields: [giftId], references: [id], onDelete: Cascade)
+}
+
+model Transaction {
+  id               String   @id @default(uuid())
+  userId           String
+  amount           Int
+  price            Float
+  points           Int
+  status           String   @default("PENDING")
+  type             String   @default("COINS")
+  targetStreamerId String?
+  createdAt        DateTime @default(now())
+
+  // Si se borra el usuario, se borra su historial
+  user           User  @relation("UserTransactions", fields: [userId], references: [id], onDelete: Cascade)
+  targetStreamer User? @relation("StreamerTransactions", fields: [targetStreamerId], references: [id])
+}
+
+model Subscription {
+  id           String   @id @default(uuid())
+  subscriberId String
+  streamerId   String
+  createdAt    DateTime @default(now())
+
+  // Si se borra cualquiera de los dos, se cancela la sub
+  subscriber User @relation("MySubs", fields: [subscriberId], references: [id], onDelete: Cascade)
+  streamer   User @relation("StreamerSubs", fields: [streamerId], references: [id], onDelete: Cascade)
+}
+
+model CoinPack {
+  id            Int     @id @default(autoincrement())
+  amount        Int
+  price         String // e.g., "S/ 5.00"
+  pointsAwarded Int
+  isActive      Boolean @default(true)
+}
+
+model Message {
+  id        String   @id @default(uuid())
+  text      String
+  createdAt DateTime @default(now())
+
+  // Relación: Quién lo escribió
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  // Sala de chat (Stream ID)
+  streamId String?
+}

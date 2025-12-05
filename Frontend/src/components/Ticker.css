@@ -1,0 +1,46 @@
+.ticker-container {
+    position: absolute;
+    /* Para flotar sobre el video */
+    bottom: 0;
+    /* Pegado al fondo */
+    left: 0;
+    width: 100%;
+    /* Ancho completo */
+    height: 40px;
+    /* Altura de la barra */
+    background: #f58220;
+    /* Fondo naranja llamativo */
+    color: white;
+    overflow: hidden;
+    /* Esconde lo que se sale */
+    display: flex;
+    align-items: center;
+    z-index: 10;
+    /* Encima del video */
+    pointer-events: none;
+    /* Permite clicks en el video debajo */
+}
+
+.ticker-text {
+    white-space: nowrap;
+    /* Que el texto no salte de línea */
+    animation: desplazamiento 15s linear infinite;
+    /* La magia del movimiento */
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+}
+
+@keyframes desplazamiento {
+    0% {
+        transform: translateX(100vw);
+    }
+
+    /* Empieza fuera a la derecha */
+    100% {
+        transform: translateX(-100%);
+    }
+
+    /* Termina fuera a la izquierda */
+}

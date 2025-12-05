@@ -1,0 +1,42 @@
+body.pantalla-general {
+  background: linear-gradient(135deg, #111, #222);
+  height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.overlay {
+  background: linear-gradient(180deg, rgba(245,130,32,0.2), transparent);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.content {
+  position: relative;
+  z-index: 10;
+  top: 40%;
+  transform: translateY(-50%);
+}
+
+h1 {
+  font-weight: bold;
+  color: #f58220;
+}
+
+.btn-primary {
+  background-color: #f58220;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #d96f1b;
+}
+
+.btn-outline-light:hover {
+  color: #f58220;
+  border-color: #f58220;
+}

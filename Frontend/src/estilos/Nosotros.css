@@ -1,0 +1,125 @@
+/* src/styles/TextPages.css */
+
+/* --- Estilos para Contenedores de Página --- */
+.page-container {
+  max-width: 1100px;
+  margin: 0 auto; /* Centra el contenido */
+  text-align: center;
+}
+
+.page-container .page-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 3rem;
+}
+
+.page-logo {
+  width: 180px;
+  height: auto;
+  margin-bottom: 2rem;
+  filter: grayscale(100%) brightness(3); /* Logo en blanco para que resalte */
+}
+
+
+/* --- Estilos Específicos para la Página "Nosotros" --- */
+.equipo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  width: 100%;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.miembro-card {
+  background-color: #2a2a2a;
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-size: cover;
+  background-position: center;
+  border: 2px solid transparent;
+}
+
+.miembro-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6);
+  border-color: #ff6f00;
+}
+
+.card-overlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 40%, rgba(0, 0, 0, 0.3) 70%, transparent 100%);
+  padding: 20px;
+  color: white;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.miembro-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 4px solid #ff6f00;
+  object-fit: cover;
+  margin: -70px auto 15px auto;
+  display: block;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 2;
+}
+
+.miembro-nombre { font-size: 1.8rem; font-weight: 700; color: #ff6f00; margin-bottom: 5px; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); }
+.miembro-rol { font-size: 1.1rem; font-weight: 500; color: #bbb; margin-bottom: 10px; }
+.miembro-descripcion { font-size: 0.9rem; color: #ccc; line-height: 1.5; max-width: 90%; margin: 0 auto 10px auto; }
+
+
+/* --- Estilos Específicos para Páginas de Texto (T&C) --- */
+.text-content {
+  text-align: left; /* Alinea el texto a la izquierda para mejor legibilidad */
+  line-height: 1.8;
+  color: #ccc;
+}
+
+.text-content h2 {
+  color: #e0e0e0;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #444;
+  padding-bottom: 0.5rem;
+}
+
+.text-content p {
+  margin-bottom: 1rem;
+}
+
+
+/* --- Botones --- */
+.btn-ulima {
+  background-color: #ff6f00;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 3rem;
+}
+
+.btn-ulima:hover {
+  background-color: #ff8f1a;
+  transform: translateY(-2px);
+}

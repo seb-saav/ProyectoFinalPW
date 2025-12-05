@@ -1,0 +1,101 @@
+/* Frontend/src/estilos/PayU.css */
+
+.payu-card {
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+  border-radius: 16px;
+  padding: 40px;
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.4s ease-out;
+}
+
+.payu-logo-text {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.payu-highlight {
+  color: #a5c33c; /* Color verde característico de PayU */
+}
+
+.payu-summary {
+  background-color: #2a2a2a;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  text-align: left;
+}
+
+.payu-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+.payu-total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #444;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.payu-total span:last-child {
+  color: #ff6f00; /* Naranja Ulima */
+}
+
+.payu-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.btn-payu-confirm {
+  background-color: #a5c33c; /* Verde PayU */
+  color: #fff;
+  border: none;
+  padding: 14px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn-payu-confirm:hover {
+  background-color: #8fa833;
+  transform: translateY(-2px);
+}
+
+.btn-payu-cancel {
+  background-color: transparent;
+  border: 2px solid #dc3545;
+  color: #dc3545;
+  padding: 12px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-payu-cancel:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
