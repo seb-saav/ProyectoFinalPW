@@ -32,7 +32,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   // Función para recargar saldo
   const recargarSaldo = () => {
-    setCurrentUser(getUser());
+    const user = getUser();
+    console.log("🔄 Layout: Recargando saldo...", user?.monedas);
+    setCurrentUser(user);
   };
 
   useEffect(() => {
@@ -61,7 +63,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   }
 
   const handleLogin = async () => {
-    const loading = toast.loading("Iniciando...");
+    const loading = toast.loading("Iniciando sesión...");
     try {
       const res = await fetch(`${API_URL}/api/auth/login`, {
         method: "POST", headers: { "Content-Type": "application/json" },
