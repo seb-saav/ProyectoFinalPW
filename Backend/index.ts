@@ -24,7 +24,7 @@ const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173"
 
 // Middlewares
 app.use(cors({
-  origin: FRONTEND_URL,
+  origin: [FRONTEND_URL, "https://seb-saav.github.io"],
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   credentials: true
 }))
