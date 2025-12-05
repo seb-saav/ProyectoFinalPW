@@ -1072,7 +1072,7 @@ import { Server as SocketServer } from 'socket.io';
 const server = http.createServer(app);
 const io = new SocketServer(server, {
   cors: {
-    origin: FRONTEND_URL,
+    origin: [FRONTEND_URL, "https://seb-saav.github.io"],
     methods: ["GET", "POST"],
     credentials: true
   }
